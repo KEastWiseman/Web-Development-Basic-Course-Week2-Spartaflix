@@ -40,22 +40,40 @@
             padding: 20px;
         }
 
-        .form-floating > input {
-            background-color : transparent;
-            color:white;
+        .form-floating>input {
+            background-color: transparent;
+            color: white;
         }
-        .form-floating > label{
-            color:white;
+
+        .form-floating>label {
+            color: white;
         }
-        .input-group > label {
-            background-color : transparent;
-            color : white;
+
+        .input-group>label {
+            background-color: transparent;
+            color: white;
         }
-        .mypostingbox > button {
-            width : 100%;
+
+        .mypostingbox>button {
+            width: 100%;
         }
     </style>
     <script>
+
+        $(document).ready(function () {
+            let url = "http://spartacodingclub.shop/sparta_api/weather/seoul";
+            fetch(url).then(res => res.json()).then(data => {
+                let temp = '';
+                if(temp>20){
+                    temp = '더워요';
+                } else{
+                    temp = '추워요';
+                }
+                $('#temperature').text(temp);
+                
+            })
+        })
+
         function hey() {
             $('#title').text('쥬라기월드');
         }
@@ -78,6 +96,7 @@
                     <li><a href="#" class="nav-link px-2 text-white">시리즈</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">영화</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">내가 찜한 콘텐츠</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">현재 서울의 날씨 : <span id="temperature"></span></a></li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
